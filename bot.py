@@ -9,12 +9,9 @@ from openpyxl import Workbook
 import os
 
 # =======================
-# BOT TOKEN (Railway'dan oladi)
+# BOT TOKEN (Railway'dan oladi, yo'q bo'lsa to'g'ridan ishlatadi)
 # =======================
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-if not BOT_TOKEN:
-    raise ValueError("BOT_TOKEN environment variable topilmadi!")
-    
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8226896946:AAFxrc3SaZxJSQGTkuDOexlL2IYeGcn8zi4")
 bot = telebot.TeleBot(BOT_TOKEN)
 DB_NAME = "finance_bot.db"
 
@@ -291,27 +288,3 @@ if __name__ == "__main__":
     init_db()
     print("✅ Bot ishga tushdi")
     bot.infinity_polling()
-#!/usr/bin/env python3
-# bot.py - Asosiy bot fayli
-
-import telebot
-from telebot import types
-import sqlite3
-from datetime import datetime, timedelta
-from openpyxl import Workbook
-import os
-
-# =======================
-# BOT TOKEN (Railway'dan oladi, yo'q bo'lsa to'g'ridan ishlatadi)
-# =======================
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8226896946:AAFxrc3SaZxJSQGTkuDOexlL2IYeGcn8zi4")
-bot = telebot.TeleBot(BOT_TOKEN)
-DB_NAME = "finance_bot.db"
-
-# =======================
-# QOLGAN KOD O'ZGARMASIN
-# =======================
-def init_db():
-    conn = sqlite3.connect(DB_NAME)
-    cur = conn.cursor()
-    # ... qolgan kod
